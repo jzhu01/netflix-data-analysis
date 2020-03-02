@@ -1,10 +1,15 @@
 from flask import Flask, render_template
+from flask_cors import CORS
+
 app = Flask(__name__)
 app.config.from_pyfile('settings.py')
 
+# enable CORS
+CORS(app, resources={r'/*': {'origins': '*'}})
+
 @app.route('/')
 def home():
-    return '<h1>Hey there!</h1>'
+    return render_template('fullView.html')
 
 @app.route('/individualView')
 def singleView():
